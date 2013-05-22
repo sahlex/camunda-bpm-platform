@@ -12,6 +12,8 @@
  */
 package org.camunda.bpm.cockpit.impl.web.bootstrap;
 
+import java.util.logging.Logger;
+
 import org.camunda.bpm.engine.ProcessEngine;
 import org.camunda.bpm.engine.ProcessEngineConfiguration;
 
@@ -25,6 +27,8 @@ import org.camunda.bpm.engine.ProcessEngineConfiguration;
  * @author nico.rehwaldt
  */
 public class CockpitEmbeddedBootstrap extends CockpitContainerBootstrap {
+  
+  private final static Logger LOG = Logger.getLogger(CockpitContainerBootstrap.class.getName());
 
   @Override
   protected CockpitEnvironment createCockpitEnvironment() {
@@ -37,7 +41,7 @@ public class CockpitEmbeddedBootstrap extends CockpitContainerBootstrap {
 
     @Override
     public void tearDown() {
-      System.out.println("Tearing down cockpit environment");
+      LOG.info("Tearing down cockpit environment");
 
       super.tearDown();
 
@@ -47,7 +51,7 @@ public class CockpitEmbeddedBootstrap extends CockpitContainerBootstrap {
 
     @Override
     public void setup() {
-      System.out.println("Bootstrapping cockpit with " + CockpitEmbeddedEnvironment.class.getName());
+      LOG.info("Bootstrapping cockpit with " + CockpitEmbeddedEnvironment.class.getName());
 
       processEngine = createProcessEngine();
       getContainerRuntimeDelegate().registerProcessEngine(processEngine);

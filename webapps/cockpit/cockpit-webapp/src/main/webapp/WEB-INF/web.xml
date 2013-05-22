@@ -3,10 +3,26 @@
 
   <display-name>camunda bpm cockpit</display-name>
 
+  <!-- spring bootstrap listener -->
+  
+  <context-param>
+    <param-name>contextConfigLocation</param-name>
+    <param-value>/WEB-INF/application-context.xml</param-value>
+  </context-param>
+ 
+  <listener>
+    <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+  </listener>
+
   <!-- cockpit bootstrap listener -->
   <listener>
     <listener-class>org.camunda.bpm.cockpit.impl.web.bootstrap.CockpitEmbeddedBootstrap</listener-class>
   </listener>
+
+  <filter>
+    <filter-name>springSecurityFilterChain</filter-name>
+    <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+  </filter>
 
   <!-- client plugins filter -->
   <filter>
@@ -22,6 +38,11 @@
     <filter-name>Client Plugins Filter</filter-name>
     <url-pattern>/app/cockpit.js</url-pattern>
     <dispatcher>REQUEST</dispatcher>
+  </filter-mapping>
+  
+  <filter-mapping>
+    <filter-name>springSecurityFilterChain</filter-name>
+    <url-pattern>/*</url-pattern>    
   </filter-mapping>
 
   <!-- cockpit rest api -->

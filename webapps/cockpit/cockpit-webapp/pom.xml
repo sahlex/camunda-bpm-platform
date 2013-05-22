@@ -49,6 +49,32 @@
       <artifactId>camunda-engine-rest</artifactId>
       <classifier>classes</classifier>
     </dependency>
+    
+    <!-- spring framework dependencies -->
+
+    <dependency>
+      <groupId>org.springframework.security</groupId>
+      <artifactId>spring-security-core</artifactId>
+      <version>${spring.framework.version}</version>
+    </dependency>
+    
+    <dependency>
+      <groupId>org.springframework.security</groupId>
+      <artifactId>spring-security-web</artifactId>
+      <version>${spring.framework.version}</version>
+    </dependency>
+    
+    <dependency>
+      <groupId>org.springframework.security</groupId>
+      <artifactId>spring-security-config</artifactId>
+      <version>${spring.framework.version}</version>
+    </dependency>
+    
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-expression</artifactId>
+      <version>${spring.framework.version}</version>
+    </dependency>
 
     <!-- tests -->
     <dependency>
@@ -90,7 +116,7 @@
       <scope>test</scope>
     </dependency>
   </dependencies>
-
+  
   <build>
     <finalName>cockpit</finalName>
     <resources>

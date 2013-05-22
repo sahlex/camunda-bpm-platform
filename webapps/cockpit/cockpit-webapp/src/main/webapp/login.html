@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>camunda BPM - cockpit</title>
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <meta name="author" content="camunda services GmbH" />
+
+    <!-- Styles -->
+    <link href="assets/css/loader.css" rel="stylesheet" />
+
+    <!-- For IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="app/assets/img/favicon.ico" />
+
+  </head>
+  <body>
+
+    <div class="wrapper">
+    
+      <!-- QUCKFIX: I am adding the header since I am not boostrapping the angular app and thus have no templating available -->
+      <div class="navbar navbar-fixed-top content-container">
+        <div class="navbar-inner">
+          <div class="container-fluid">
+            <a class="brand ir" href="index.html">
+              camunda cockpit
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="container-fluid content-container content-inset">
+        <div class="row-fluid content-container">
+        
+            <div class="span4">
+                    
+            <h1 class="page-header">Login</h1>
+        
+            <form class="form-horizontal" action="/cockpit/j_spring_security_check" method="POST">
+              <div class="control-group">
+                <label class="control-label" for="inputUsername">Username</label>
+                <div class="controls">
+                  <input type="text" id="inputUsername" placeholder="Username" name="j_username">
+                </div>
+              </div>
+              <div class="control-group">
+                <label class="control-label" for="inputPassword">Password</label>
+                <div class="controls">
+                  <input type="password" id="inputPassword" placeholder="Password" name="j_password">
+                </div>
+              </div>
+              <div class="control-group">
+                <div class="controls">
+                  <!--<label class="checkbox">
+                    <input type="checkbox"> Remember me
+                  </label> -->
+                  <button type="submit" class="btn">Sign in</button>
+                </div>
+              </div>
+            </form>
+        </div>
+        </div>
+      </div>
+      <div class="push-down"><!-- // --></div>
+    </div>
+
+    <!-- footer -->
+    <footer class="content-container">
+      <div class="container-fluid">
+        <p><a href="http://camunda.org">powered by camunda BPM</a> / version ${project.version}</p>
+      </div>
+
+    </footer>
+  </body>
+</html>
