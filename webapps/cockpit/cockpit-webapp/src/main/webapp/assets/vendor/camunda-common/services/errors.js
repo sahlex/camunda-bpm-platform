@@ -45,7 +45,7 @@ ngDefine('camunda.common.services', function(module) {
 
         while (errors.length) {
           var error = errors.pop();
-          this.clearError(error);
+          this.clear(error);
         }
       },
 

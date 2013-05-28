@@ -12,6 +12,7 @@
  */
 package org.camunda.bpm.cockpit;
 
+import org.camunda.bpm.cockpit.auth.AuthenticationService;
 import org.camunda.bpm.cockpit.db.CommandExecutor;
 import org.camunda.bpm.cockpit.db.QueryService;
 import org.camunda.bpm.cockpit.plugin.PluginRegistry;
@@ -58,4 +59,11 @@ public interface CockpitRuntimeDelegate {
    * @return
    */
   public PluginRegistry getPluginRegistry();
+  
+  /**
+   * the authentication service provides facilities for 
+   * authenticating a user and retrieving the currently authenticated user.
+   */
+  public AuthenticationService getAuthenticationService();
+    
 }

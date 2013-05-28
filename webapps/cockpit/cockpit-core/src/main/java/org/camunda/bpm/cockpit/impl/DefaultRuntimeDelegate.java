@@ -12,17 +12,18 @@
  */
 package org.camunda.bpm.cockpit.impl;
 
-import org.camunda.bpm.cockpit.impl.plugin.DefaultPluginRegistry;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.camunda.bpm.BpmPlatform;
 import org.camunda.bpm.cockpit.CockpitRuntimeDelegate;
-import org.camunda.bpm.cockpit.plugin.PluginRegistry;
+import org.camunda.bpm.cockpit.auth.AuthenticationService;
 import org.camunda.bpm.cockpit.db.CommandExecutor;
 import org.camunda.bpm.cockpit.db.QueryService;
 import org.camunda.bpm.cockpit.impl.db.CommandExecutorImpl;
 import org.camunda.bpm.cockpit.impl.db.QueryServiceImpl;
+import org.camunda.bpm.cockpit.impl.plugin.DefaultPluginRegistry;
+import org.camunda.bpm.cockpit.plugin.PluginRegistry;
 import org.camunda.bpm.cockpit.plugin.spi.CockpitPlugin;
 import org.camunda.bpm.engine.ProcessEngine;
 import org.camunda.bpm.engine.ProcessEngineException;
@@ -40,6 +41,8 @@ import org.camunda.bpm.engine.impl.cfg.ProcessEngineConfigurationImpl;
 public class DefaultRuntimeDelegate implements CockpitRuntimeDelegate {
 
   private final PluginRegistry pluginRegistry;
+  
+  protected AuthenticationService authenticationService;
 
   public DefaultRuntimeDelegate() {
     this.pluginRegistry = new DefaultPluginRegistry();
@@ -81,6 +84,14 @@ public class DefaultRuntimeDelegate implements CockpitRuntimeDelegate {
   public PluginRegistry getPluginRegistry() {
     return pluginRegistry;
   }
+  
+  public AuthenticationService getAuthenticationService() {
+    return authenticationService;
+  }
+  
+  public void setAuthenticationService(AuthenticationService authenticationService) {
+    this.authenticationService = authenticationService;
+  }
 
   @Override
   public ProcessEngine getProcessEngine(String processEngineName) {
@@ -90,4 +101,5 @@ public class DefaultRuntimeDelegate implements CockpitRuntimeDelegate {
       throw new ProcessEngineException("No process engine with name " + processEngineName + " found.", e);
     }
   }
+
 }

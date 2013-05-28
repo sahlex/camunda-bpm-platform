@@ -1,4 +1,5 @@
 ngDefine('camunda.common.services', [
+  './authentication',
   './debouncer',
   './errors',
   './httpStatusInterceptor',

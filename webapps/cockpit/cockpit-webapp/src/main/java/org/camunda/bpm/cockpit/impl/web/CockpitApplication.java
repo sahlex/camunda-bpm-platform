@@ -19,6 +19,7 @@ import java.util.Set;
 import javax.ws.rs.core.Application;
 
 import org.camunda.bpm.cockpit.Cockpit;
+import org.camunda.bpm.cockpit.impl.web.auth.resource.AuthenticationResource;
 import org.camunda.bpm.cockpit.plugin.spi.CockpitPlugin;
 import org.camunda.bpm.engine.rest.exception.ExceptionHandler;
 import org.camunda.bpm.engine.rest.mapper.JacksonConfigurator;
@@ -38,6 +39,8 @@ public class CockpitApplication extends Application {
     classes.add(JacksonConfigurator.class);
     classes.add(JacksonJsonProvider.class);
     classes.add(ExceptionHandler.class);
+    
+    classes.add(AuthenticationResource.class);
 
     addPluginResourceClasses(classes);
 

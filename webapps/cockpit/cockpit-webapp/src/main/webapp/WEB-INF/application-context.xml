@@ -3,21 +3,63 @@
           http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
           http://www.springframework.org/schema/security
           http://www.springframework.org/schema/security/spring-security-3.1.xsd">
+          
+          
+  <!-- spring security authentication service bootstrapping -->
+  
+  <bean id="cockpitRuntimeDelegate" class="org.camunda.bpm.cockpit.Cockpit" factory-method="getRuntimeDelegate">  
+    <property name="authenticationService" ref="authenticationService" />  
+  </bean>
+  
+  <bean id="authenticationService" class="org.camunda.bpm.cockpit.impl.web.auth.impl.spring.SpringSecurityAuthenticationService">    
+    <property name="authenticationManager" ref="org.springframework.security.authenticationManager" />  
+  </bean>
+  
+  <!-- spring security configuration -->
 
   <security:http>
-    <security:intercept-url pattern="/login*" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
-    <security:intercept-url pattern="/assets/**" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
-    <security:intercept-url pattern="/**" access="ROLE_USER" />
-    <security:form-login login-page="/login.html" always-use-default-target="true" default-target-url="/app" />
-    <security:logout delete-cookies="true" invalidate-session="true" logout-url="/logout" logout-success-url="/login.html"  />
+
+    <!-- allow access to auth resources -->
+    <security:intercept-url pattern="/api/cockpit/auth/**" access="IS_AUTHENTICATED_ANONYMOUSLY" />
+    <!-- allow access to static plugin resources -->
+    <security:intercept-url pattern="/api/cockpit/plugin/**/static/**" access="IS_AUTHENTICATED_ANONYMOUSLY" />
+    <!-- protect access to api resources -->
+    <security:intercept-url pattern="/api/**" access="ROLE_USER" />
+
+    <security:http-basic entry-point-ref="defaultAuthenticationEntryPoint" />
   </security:http>
 
+  <bean id="defaultAuthenticationEntryPoint" class="org.camunda.bpm.cockpit.impl.web.auth.impl.spring.DefaultAuthenticationEntryPoint" />
+
   <security:authentication-manager>
+
     <security:authentication-provider>
       <security:user-service>
-        <security:user name="demo" password="demo" authorities="ROLE_USER, ROLE_ADMIN" />
+        <security:user name="demo" password="demo" authorities="ROLE_USER" />  
       </security:user-service>
     </security:authentication-provider>
+  
+    <!-- LDAP 
+        
+        Authentication-provider example:
+         
+    <security:ldap-authentication-provider     
+        user-dn-pattern="uid={0},ou=employee"        
+        group-search-base="ou=department,ou=roles" 
+        group-search-filter="(member={0})"
+        group-role-attribute="cn"
+        user-context-mapper-ref="" >
+                
+    </security:ldap-authentication-provider>    
+    -->
+    
   </security:authentication-manager>
 
+  <!-- ldap server example
+  <security:ldap-server 
+    url="ldaps://ldap.camunda.com:636/o=camunda,c=com" 
+    manager-dn="..." 
+    manager-password="..." />
+  -->
+  
 </beans>
