@@ -63,5 +63,19 @@ public class SpringAuthenticatedPrincipal implements AuthenticatedPrincipal {
     
     return result;
   }
+  
+  public boolean equals(Object obj) {
+    if (obj instanceof SpringAuthenticatedPrincipal) {
+      return authentication.equals(obj);      
+      
+    } else {
+      return super.equals(obj);
+      
+    }
+  }
+  
+  public int hashCode() {
+    return authentication.hashCode();
+  }
 
 }
