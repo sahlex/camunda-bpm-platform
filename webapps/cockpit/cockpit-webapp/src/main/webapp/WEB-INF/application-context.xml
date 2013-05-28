@@ -38,7 +38,7 @@
         <security:user name="demo" password="demo" authorities="ROLE_USER" />  
       </security:user-service>
     </security:authentication-provider>
-  
+      
     <!-- LDAP 
         
         Authentication-provider example:
