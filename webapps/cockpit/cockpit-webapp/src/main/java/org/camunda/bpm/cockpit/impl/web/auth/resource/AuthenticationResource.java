@@ -29,7 +29,7 @@ import org.camunda.bpm.cockpit.auth.AuthenticatedPrincipal;
 import org.camunda.bpm.cockpit.auth.AuthenticationException;
 import org.camunda.bpm.cockpit.auth.AuthenticationService;
 import org.camunda.bpm.cockpit.impl.auth.UsernamePasswordAuthToken;
-import org.camunda.bpm.cockpit.impl.web.auth.impl.unsecure.SslUnsecureTrustManagerHelper;
+import org.camunda.bpm.cockpit.impl.web.auth.impl.unsafe.SslUnsafeTrustManagerHelper;
 
 /**
  * <p>JAX-RS resource handling login and logout requests.
@@ -59,7 +59,7 @@ public class AuthenticationResource {
     UsernamePasswordAuthToken token = new UsernamePasswordAuthToken(username, password);
 
     try {
-      SslUnsecureTrustManagerHelper.accepptAllSSLCertificates();
+      SslUnsafeTrustManagerHelper.accepptAllSSLCertificates();
       // perform authentication      
       authenticationService.authenticate(token);
 

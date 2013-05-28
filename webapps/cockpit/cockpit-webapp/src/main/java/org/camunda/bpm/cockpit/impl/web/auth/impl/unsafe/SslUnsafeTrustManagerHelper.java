@@ -10,7 +10,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.camunda.bpm.cockpit.impl.web.auth.impl.unsecure;
+package org.camunda.bpm.cockpit.impl.web.auth.impl.unsafe;
 
 import java.security.SecureRandom;
 import java.security.cert.CertificateException;
@@ -22,7 +22,7 @@ import javax.net.ssl.TrustManager;
 import javax.net.ssl.X509TrustManager;
 
 
-public class SslUnsecureTrustManagerHelper {
+public class SslUnsafeTrustManagerHelper {
 
   /**
    * set global environment to ignore missing self signed certificate. Aceepts

@@ -18,7 +18,7 @@ import org.camunda.bpm.cockpit.auth.AuthenticationProvider;
 import org.camunda.bpm.cockpit.auth.AuthenticationService;
 import org.camunda.bpm.cockpit.auth.AuthenticationToken;
 import org.camunda.bpm.cockpit.impl.auth.UsernamePasswordAuthToken;
-import org.camunda.bpm.cockpit.impl.web.auth.impl.unsecure.SslUnsecureTrustManagerHelper;
+import org.camunda.bpm.cockpit.impl.web.auth.impl.unsafe.SslUnsafeTrustManagerHelper;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -81,7 +81,7 @@ public class SpringSecurityAuthenticationService implements AuthenticationServic
   public void afterPropertiesSet() throws Exception {
     
     if(isAcceptAllSslCertificates) {
-      SslUnsecureTrustManagerHelper.accepptAllSSLCertificates();
+      SslUnsafeTrustManagerHelper.accepptAllSSLCertificates();
     }
     
   }
