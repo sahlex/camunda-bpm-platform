@@ -17,6 +17,7 @@ import org.camunda.bpm.cockpit.Cockpit;
 import org.camunda.bpm.cockpit.db.CommandExecutor;
 import org.camunda.bpm.cockpit.db.QueryService;
 import org.camunda.bpm.cockpit.impl.DefaultRuntimeDelegate;
+import org.camunda.bpm.cockpit.impl.auth.dummy.DummyAuthenticationService;
 import org.camunda.bpm.engine.ProcessEngine;
 import org.camunda.bpm.engine.impl.util.LogUtil;
 import org.camunda.bpm.engine.test.ProcessEngineRule;
@@ -81,6 +82,11 @@ public abstract class AbstractCockpitPluginTest {
   private static class TestCockpitRuntimeDelegate extends DefaultRuntimeDelegate {
 
     public ProcessEngine ENGINE;
+    
+    public TestCockpitRuntimeDelegate() {
+      // use dummy auth service in testcases
+      authenticationService = new DummyAuthenticationService();
+    }
 
     @Override
     public ProcessEngine getProcessEngine(String processEngineName) {

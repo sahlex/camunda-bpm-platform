@@ -20,6 +20,28 @@ package org.camunda.bpm.cockpit.auth;
  * @author Daniel Meyer
  *
  */
-public interface AuthenticationService extends AuthenticationProvider, AuthenticationContext {
+public interface AuthenticationService {
+
+  /**
+   * <p>Authenticate a principal given the provided credentials.</p>
+   * 
+   * @param username
+   * @param credential
+   * @return the current {@link AuthenticatedPrincipal}
+   * @throws AuthenticationException
+   *           if the passed in token cannot be authenticated
+   */
+  public AuthenticatedPrincipal authenticate(AuthenticationToken token) throws AuthenticationException;
+
+  /**
+   * @return Returns the current {@link AuthenticatedPrincipal} (ie. the user
+   *         that is currently authenticated).</p>
+   */
+  public AuthenticatedPrincipal getCurrentPrincipal();
+  
+  /**
+   * clear the current authentication. (Effectively logg out the current user).
+   */
+  public void clearCurrentPrincipal();
   
 }

@@ -22,6 +22,8 @@ import org.camunda.bpm.cockpit.auth.AuthenticationToken;
 /**
  * <p>Dummy implementation of the authentication services</p>
  * 
+ * <p>This service accepts all authentication requests.</p>
+ * 
  * @author Daniel Meyer
  *
  */

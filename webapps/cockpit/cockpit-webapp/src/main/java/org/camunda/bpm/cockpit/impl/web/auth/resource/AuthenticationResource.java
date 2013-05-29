@@ -49,7 +49,7 @@ public class AuthenticationResource {
   
   @POST
   @Path("login")
-  public AuthenticationResponseDto login(AuthenticationReqestDto loginDto) {
+  public AuthenticationResponseDto login(AuthenticationRequestDto loginDto) {
 
     final AuthenticationService authenticationService = getAuthenticationService();
 
@@ -59,7 +59,6 @@ public class AuthenticationResource {
     UsernamePasswordAuthToken token = new UsernamePasswordAuthToken(username, password);
 
     try {
-      SslUnsafeTrustManagerHelper.accepptAllSSLCertificates();
       // perform authentication      
       authenticationService.authenticate(token);
 

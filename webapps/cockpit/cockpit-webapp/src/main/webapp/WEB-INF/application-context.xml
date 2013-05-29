@@ -16,7 +16,7 @@
     
     <!-- set to true if your LDAP uses self signed certificates. 
          WARNING: unsafe, better install the certificate to your JVM trust store.. -->  
-    <property name="isAcceptAllSslCertificates" value="false" />
+    <property name="acceptAllSslCertificates" value="false" />
     
   </bean>
   
@@ -62,7 +62,7 @@
 
   <!-- ldap server example
   <security:ldap-server 
-    url="ldaps://ldap.camunda.com:636/o=camunda,c=com" 
+    url="..." 
     manager-dn="..." 
     manager-password="..." />
   -->

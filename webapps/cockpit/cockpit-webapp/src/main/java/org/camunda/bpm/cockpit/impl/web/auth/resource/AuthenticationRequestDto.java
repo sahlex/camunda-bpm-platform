@@ -16,7 +16,7 @@ package org.camunda.bpm.cockpit.impl.web.auth.resource;
  * @author Daniel Meyer
  *
  */
-public class AuthenticationReqestDto {
+public class AuthenticationRequestDto {
   
   protected String username;
   protected String password;

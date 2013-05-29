@@ -14,13 +14,13 @@ package org.camunda.bpm.cockpit.impl.web.auth.impl.spring;
 
 import org.camunda.bpm.cockpit.auth.AuthenticatedPrincipal;
 import org.camunda.bpm.cockpit.auth.AuthenticationException;
-import org.camunda.bpm.cockpit.auth.AuthenticationProvider;
 import org.camunda.bpm.cockpit.auth.AuthenticationService;
 import org.camunda.bpm.cockpit.auth.AuthenticationToken;
 import org.camunda.bpm.cockpit.impl.auth.UsernamePasswordAuthToken;
 import org.camunda.bpm.cockpit.impl.web.auth.impl.unsafe.SslUnsafeTrustManagerHelper;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
