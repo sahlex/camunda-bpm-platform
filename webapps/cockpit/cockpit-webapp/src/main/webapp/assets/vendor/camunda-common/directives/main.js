@@ -1,7 +1,8 @@
 ngDefine('camunda.common.directives', [
   './notificationsPanel',
   './help',
-  './requestAware'
+  './requestAware',
+  './paginator'
 ], function(module) {
 
 });

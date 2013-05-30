@@ -67,7 +67,6 @@ public abstract class AbstractCockpitPluginTest {
   }
 
   public ProcessEngine getProcessEngine() {
-    System.out.println(processEngineRule.getProcessEngine());
     return processEngineRule.getProcessEngine();
   }
 

@@ -12,7 +12,7 @@
     'module:camunda.common.extensions:camunda-common/extensions/main',
     'module:camunda.common.services:camunda-common/services/main' ];
 
-  var plugins = PLUGIN_DEPENDENCIES || [];
+  var plugins = window.PLUGIN_DEPENDENCIES || [];
 
   var dependencies = [ 'jquery', 'module:ng', 'module:ngResource', 'module:ngCookies' ].concat(commons, cockpitCore, plugins);
 
@@ -98,4 +98,4 @@
 
   });
 
-})();
+})(window || this);

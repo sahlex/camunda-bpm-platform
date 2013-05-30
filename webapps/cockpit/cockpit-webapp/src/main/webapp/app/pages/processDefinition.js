@@ -10,17 +10,19 @@ define(["angular"], function(angular, BpmnRender) {
       $location.path('/dashboard').replace();
       Notifications.add({ "status" : "Error" , "config" :  "No process definition id was provided. Auto-redirecting to main site." });
     }
-    
+
+    $scope.processInstanceTable = Views.getProvider({ component: 'cockpit.process.instances'});
+
     $scope.processDefinitionId = $routeParams.processDefinitionId;
-    
+
     ProcessDefinitionResource.get({ id : $scope.processDefinitionId }, function(result) {
       $scope.processDefinition = result;
-      
+
       ProcessInstanceResource.count({ processDefinitionKey : $scope.processDefinition.key }).$then(function(result) {
         $scope.processDefinitionTotalCount = result.data;
       });
     });
-    
+
     ProcessInstanceResource.count({ processDefinitionId : $scope.processDefinitionId }).$then(function(result) {
       $scope.processDefinitionLatestVersionCount = result.data;
     });
@@ -30,15 +32,15 @@ define(["angular"], function(angular, BpmnRender) {
   
   var RouteConfig = function ($routeProvider) {
     $routeProvider.when('/process-definition/:processDefinitionId', {
-      templateUrl:'pages/process-definition.html',
-      controller: 'ProcessDefinitionCtrl'
+      templateUrl: 'pages/process-definition.html',
+      controller: Controller,
+      reloadOnSearch: false
     });
   };
 
   RouteConfig.$inject = ["$routeProvider"];
-  
+
   module
-    .config(RouteConfig)
-    .controller("ProcessDefinitionCtrl", Controller);
-  
+    .config(RouteConfig);
+
 });
