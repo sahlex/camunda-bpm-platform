@@ -4,7 +4,7 @@ define(["angular"], function(angular, BpmnRender) {
 
   var module = angular.module("cockpit.pages");
   
-  var Controller = function($scope, $routeParams, $location, Notifications, ProcessDefinitionResource, ProcessInstanceResource) {
+  var Controller = function($scope, $routeParams, $location, Notifications, ProcessDefinitionResource, ProcessInstanceResource, Views) {
     // redirect when no processDefinitionId is set
     if (!$routeParams.processDefinitionId) {
       $location.path('/dashboard').replace();
@@ -28,7 +28,7 @@ define(["angular"], function(angular, BpmnRender) {
     });
   };
   
-  Controller.$inject = ["$scope", "$routeParams", "$location", "Notifications", "ProcessDefinitionResource", "ProcessInstanceResource"];
+  Controller.$inject = ["$scope", "$routeParams", "$location", "Notifications", "ProcessDefinitionResource", "ProcessInstanceResource", "Views"];
   
   var RouteConfig = function ($routeProvider) {
     $routeProvider.when('/process-definition/:processDefinitionId', {
