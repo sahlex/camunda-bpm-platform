@@ -15,8 +15,8 @@ package org.camunda.bpm.cockpit.test.sample.web;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 
-import org.camunda.bpm.cockpit.impl.DefaultRuntimeDelegate;
 import org.camunda.bpm.cockpit.Cockpit;
+import org.camunda.bpm.cockpit.impl.DefaultRuntimeDelegate;
 import org.camunda.bpm.container.RuntimeContainerDelegate;
 import org.camunda.bpm.engine.ProcessEngine;
 import org.camunda.bpm.engine.ProcessEngineConfiguration;

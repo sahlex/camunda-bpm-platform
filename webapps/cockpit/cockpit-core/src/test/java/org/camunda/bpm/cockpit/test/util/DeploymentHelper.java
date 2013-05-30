@@ -12,12 +12,12 @@
  */
 package org.camunda.bpm.cockpit.test.util;
 
-import org.camunda.bpm.cockpit.test.sample.TestProcessApplication;
 import java.io.File;
 
 import org.camunda.bpm.cockpit.Cockpit;
 import org.camunda.bpm.cockpit.core.test.util.TestContainer;
 import org.camunda.bpm.cockpit.plugin.spi.CockpitPlugin;
+import org.camunda.bpm.cockpit.test.sample.TestProcessApplication;
 import org.camunda.bpm.cockpit.test.sample.plugin.simple.SimplePlugin;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.exporter.ZipExporter;

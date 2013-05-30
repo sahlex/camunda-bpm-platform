@@ -14,13 +14,12 @@ package org.camunda.bpm.cockpit.test.plugin;
 
 import static org.fest.assertions.Assertions.assertThat;
 
-import org.camunda.bpm.cockpit.Cockpit;
-import org.camunda.bpm.cockpit.db.QueryParameters;
-import org.camunda.bpm.cockpit.db.QueryService;
-
 import java.util.List;
 
 import org.camunda.bpm.BpmPlatform;
+import org.camunda.bpm.cockpit.Cockpit;
+import org.camunda.bpm.cockpit.db.QueryParameters;
+import org.camunda.bpm.cockpit.db.QueryService;
 import org.camunda.bpm.cockpit.plugin.spi.CockpitPlugin;
 import org.camunda.bpm.cockpit.test.sample.plugin.simple.SimplePlugin;
 import org.camunda.bpm.cockpit.test.util.AbstractCockpitCoreTest;

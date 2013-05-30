@@ -42,6 +42,15 @@
       <artifactId>camunda-engine</artifactId>
       <scope>provided</scope>
     </dependency>
+    
+    <!-- incude webapps commons web resources (added as overlay) -->
+    <!-- NOTE: the commons classes are propagated transitively through cockpit core. -->
+    <dependency>
+      <groupId>org.camunda.bpm</groupId>
+      <artifactId>camunda-webapps-commons</artifactId>
+      <type>war</type>
+      <version>${project.version}</version>
+    </dependency>
 
     <!-- rest api -->
     <dependency>
@@ -49,39 +58,7 @@
       <artifactId>camunda-engine-rest</artifactId>
       <classifier>classes</classifier>
     </dependency>
-    
-    <!-- spring framework dependencies -->
-
-    <dependency>
-      <groupId>org.springframework.security</groupId>
-      <artifactId>spring-security-core</artifactId>
-      <version>${spring.framework.version}</version>
-    </dependency>
-    
-    <dependency>
-      <groupId>org.springframework.security</groupId>
-      <artifactId>spring-security-web</artifactId>
-      <version>${spring.framework.version}</version>
-    </dependency>
-    
-    <dependency>
-      <groupId>org.springframework.security</groupId>
-      <artifactId>spring-security-config</artifactId>
-      <version>${spring.framework.version}</version>
-    </dependency>
-    
-    <dependency>
-      <groupId>org.springframework.security</groupId>
-      <artifactId>spring-security-ldap</artifactId>
-      <version>${spring.framework.version}</version>
-    </dependency>
-    
-    <dependency>
-      <groupId>org.springframework</groupId>
-      <artifactId>spring-expression</artifactId>
-      <version>${spring.framework.version}</version>
-    </dependency>
-
+       
     <!-- tests -->
     <dependency>
       <groupId>junit</groupId>

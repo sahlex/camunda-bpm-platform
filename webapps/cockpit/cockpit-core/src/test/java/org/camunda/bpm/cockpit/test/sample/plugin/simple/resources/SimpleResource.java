@@ -13,6 +13,7 @@
 package org.camunda.bpm.cockpit.test.sample.plugin.simple.resources;
 
 import java.util.List;
+
 import javax.ws.rs.GET;
 
 import org.camunda.bpm.cockpit.db.QueryParameters;

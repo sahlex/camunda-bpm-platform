@@ -11,7 +11,7 @@
     <property name="authenticationService" ref="authenticationService" />  
   </bean>
   
-  <bean id="authenticationService" class="org.camunda.bpm.cockpit.impl.web.auth.impl.spring.SpringSecurityAuthenticationService">    
+  <bean id="authenticationService" class="org.camunda.bpm.common.auth.impl.spring.SpringSecurityAuthenticationService">    
     <property name="authenticationManager" ref="org.springframework.security.authenticationManager" />
     
     <!-- set to true if your LDAP uses self signed certificates. 
@@ -34,7 +34,7 @@
     <security:http-basic entry-point-ref="defaultAuthenticationEntryPoint" />
   </security:http>
 
-  <bean id="defaultAuthenticationEntryPoint" class="org.camunda.bpm.cockpit.impl.web.auth.impl.spring.DefaultAuthenticationEntryPoint" />
+  <bean id="defaultAuthenticationEntryPoint" class="org.camunda.bpm.common.auth.impl.spring.DefaultAuthenticationEntryPoint" />
 
   <security:authentication-manager>
 

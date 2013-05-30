@@ -27,6 +27,13 @@
       <artifactId>camunda-engine-rest</artifactId>
       <classifier>classes</classifier>
     </dependency>
+    
+    <dependency>
+      <groupId>org.camunda.bpm</groupId>
+      <artifactId>camunda-webapps-commons</artifactId>
+      <classifier>classes</classifier>
+      <version>${project.version}</version>      
+    </dependency>
 
     <dependency>
       <groupId>org.jboss.spec</groupId>
@@ -35,7 +42,40 @@
       <scope>provided</scope>
       <version>3.0.2.Final</version>
     </dependency>
+    
+    <!-- spring framework dependencies (used for spring security) -->
 
+    <dependency>
+      <groupId>org.springframework.security</groupId>
+      <artifactId>spring-security-core</artifactId>
+      <version>${spring.framework.version}</version>
+    </dependency>
+    
+    <dependency>
+      <groupId>org.springframework.security</groupId>
+      <artifactId>spring-security-web</artifactId>
+      <version>${spring.framework.version}</version>
+    </dependency>
+    
+    <dependency>
+      <groupId>org.springframework.security</groupId>
+      <artifactId>spring-security-config</artifactId>
+      <version>${spring.framework.version}</version>
+    </dependency>
+    
+    <dependency>
+      <groupId>org.springframework.security</groupId>
+      <artifactId>spring-security-ldap</artifactId>
+      <version>${spring.framework.version}</version>
+    </dependency>
+    
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-expression</artifactId>
+      <version>${spring.framework.version}</version>
+    </dependency>
+
+    <!-- tests -->
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
@@ -48,7 +88,6 @@
       <scope>test</scope>
     </dependency>
 
-    <!-- tests -->
     <dependency>
       <groupId>org.easytesting</groupId>
       <artifactId>fest-assert</artifactId>

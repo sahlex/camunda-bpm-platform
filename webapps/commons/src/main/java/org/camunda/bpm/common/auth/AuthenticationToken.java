@@ -1,41 +1,33 @@
 /* Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * 
  *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.camunda.bpm.cockpit.plugin;
+package org.camunda.bpm.common.auth;
 
-import java.util.List;
-
-import org.camunda.bpm.cockpit.plugin.spi.CockpitPlugin;
+import java.io.Serializable;
 
 /**
- * The holder of registered cockpit plugins.
+ * <p>The credentials used for authenticating a user</p>
+ * 
+ * <p>See {@link AuthenticationProvider#authenticate(String, String)}</p>
+ * 
+ * @author Daniel Meyer
+ * 
  *
- * @author nico.rehwaldt
  */
-public interface PluginRegistry {
+public interface AuthenticationToken extends Serializable {
   
-  /**
-   * Returns all registered plugins
-   *
-   * @return
-   */
-  public List<CockpitPlugin> getPlugins();
+  /** 
+   * @return the parts that make up this token
+   * */
+  public String[] getParts();
 
-  /**
-   * Returns the registered plugin with the given name or
-   * <code>null</code> if the plugin does not exist.
-   *
-   * @param id
-   * @return
-   */
-  public CockpitPlugin getPlugin(String id);
 }

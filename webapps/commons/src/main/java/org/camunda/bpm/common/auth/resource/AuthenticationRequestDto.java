@@ -1,41 +1,37 @@
 /* Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * 
  *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.camunda.bpm.cockpit.plugin;
-
-import java.util.List;
-
-import org.camunda.bpm.cockpit.plugin.spi.CockpitPlugin;
+package org.camunda.bpm.common.auth.resource;
 
 /**
- * The holder of registered cockpit plugins.
+ * @author Daniel Meyer
  *
- * @author nico.rehwaldt
  */
-public interface PluginRegistry {
+public class AuthenticationRequestDto {
   
-  /**
-   * Returns all registered plugins
-   *
-   * @return
-   */
-  public List<CockpitPlugin> getPlugins();
+  protected String username;
+  protected String password;
+  
+  public String getUsername() {
+    return username;
+  }
+  public void setUsername(String username) {
+    this.username = username;
+  }
+  public String getPassword() {
+    return password;
+  }
+  public void setPassword(String password) {
+    this.password = password;
+  }
 
-  /**
-   * Returns the registered plugin with the given name or
-   * <code>null</code> if the plugin does not exist.
-   *
-   * @param id
-   * @return
-   */
-  public CockpitPlugin getPlugin(String id);
 }
