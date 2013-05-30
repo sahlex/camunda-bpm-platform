@@ -11,7 +11,6 @@
   </parent>
 
   <artifactId>camunda-webapps-commons</artifactId>
-  <packaging>war</packaging>
   <name>camunda BPM - webapps - commons</name>
 
   <dependencies>
@@ -76,34 +75,5 @@
     </dependency>
 
   </dependencies>
-
-  <build>
-    <plugins>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-jar-plugin</artifactId>
-        <executions>
-          <execution>
-            <id>create-jar</id>
-            <goals>
-              <goal>jar</goal>
-            </goals>
-            <phase>package</phase>
-            <configuration>
-              <classifier>classes</classifier>
-            </configuration>
-          </execution>
-        </executions>
-      </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-war-plugin</artifactId>
-        <configuration>
-          <failOnMissingWebXml>false</failOnMissingWebXml>
-           <packagingExcludes>WEB-INF/classes/**,WEB-INF/lib/**</packagingExcludes>
-        </configuration>
-      </plugin>
-    </plugins>
-  </build>
 
 </project>

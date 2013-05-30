@@ -1,7 +1,5 @@
-"use strict";
 
-define([ "angular", "jquery" ], function(angular, $) {
-  var module = angular.module("common.directives");
+ngDefine('camunda.common.directives', [ 'jquery' ], function(module, $) {
 
   var notificationsTemplate =
 '<div class="notifications">' +
@@ -11,7 +9,7 @@ define([ "angular", "jquery" ], function(angular, $) {
 '  </div>' +
 '</div>';
 
-  module.directive("notificationsPanel", function(Notifications, $filter) {
+ var Directive =  function(Notifications, $filter) {
     return {
       scope: {
         filter: "=notificationsFilter"
@@ -70,8 +68,12 @@ define([ "angular", "jquery" ], function(angular, $) {
           Notifications.unregisterConsumer(consumer);
         });
       }
-    };
-  });
+    }
+  };
 
-  return module;
+  module
+    .directive("notificationsPanel", Directive);
+
+    return module;
+
 });

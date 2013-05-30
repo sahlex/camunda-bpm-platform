@@ -18,30 +18,30 @@
 
   ngDefine('cockpit', dependencies, function(module, $) {
 
-    var ResponseErrorHandler = function(Errors, Authentication, $location) {
+    var ResponseErrorHandler = function(Notifications, Authentication, $location) {
 
       this.handlerFn = function(event, responseError) {
         var status = responseError.status,
             data = responseError.data;
 
-        Errors.clear({ type: "error" });
+        Notifications.clear({ type: "error" });
 
         switch (status) {
         case 500:
           if (data && data.message) {
-            Errors.add({ status: "Error", message: data.message, exceptionType: data.exceptionType });
+            Notifications.addError({ status: "Error", message: data.message, exceptionType: data.exceptionType });
           } else {
-            Errors.add({ status: "Error", message: "A problem occurred: Try to refresh the view or login and out of the application. If the problem persists, contact your administrator." });
+            Notifications.addError({ status: "Error", message: "A problem occurred: Try to refresh the view or login and out of the application. If the problem persists, contact your administrator." });
           }
           break;
         case 0:
-          Errors.add({ status: "Request Timeout", message:  "Your request timed out. Try refreshing the page." });
+          Notifications.addError({ status: "Request Timeout", message:  "Your request timed out. Try refreshing the page." });
           break;
         case 401:
           if (Authentication.current()) {
-            Errors.add({ status: "Unauthorized", message:  "Your session has expired. Please login again." });
+            Notifications.addError({ status: "Unauthorized", message:  "Your session has expired. Please login again." });
           } else {
-            Errors.add({ status: "Unauthorized", message:  "Login is required to access this page." });
+            Notifications.addError({ status: "Unauthorized", message:  "Login is required to access this page." });
           }
 
           Authentication.set(null);
@@ -49,20 +49,12 @@
 
           break;
         default:
-          Errors.add({ status: "Error", message :  "A problem occurred: Try to refresh the view or login and out of the application. If the problem persists, contact your administrator." });
+          Notifications.addError({ status: "Error", message :  "A problem occurred: Try to refresh the view or login and out of the application. If the problem persists, contact your administrator." });
         }
       };
     };
 
-    var Controller = function ($scope, $location, Errors, Authentication) {
-
-      $scope.appErrors = function () {
-        return Errors.errors;
-      };
-
-      $scope.removeError = function (error) {
-        Errors.clear(error);
-      };
+    var Controller = function ($scope, $location, Notifications, Authentication) {
 
       $scope.auth = Authentication.auth;
 
@@ -72,11 +64,11 @@
         return form.$valid || !form.$dirty ? '' : 'error';
       };
 
-      $scope.$on("responseError", new ResponseErrorHandler(Errors, Authentication, $location).handlerFn);
+      $scope.$on("responseError", new ResponseErrorHandler(Notifications, Authentication, $location).handlerFn);
 
     };
 
-    Controller.$inject = ['$scope',  '$location', 'Errors', 'Authentication'];
+    Controller.$inject = ['$scope',  '$location', 'Notifications', 'Authentication'];
 
     var ModuleConfig = function($routeProvider, $httpProvider, UriProvider) {
       $httpProvider.responseInterceptors.push('httpStatusInterceptor');

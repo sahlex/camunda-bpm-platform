@@ -1,8 +1,5 @@
-"use strict";
+ngDefine('camunda.common.services', function(module) {
 
-define([ "angular" ], function(angular) {
-
-  var module = angular.module("common.services");
 
   var ServiceProducer = function ServiceProducer($filter, $timeout) {
     return {

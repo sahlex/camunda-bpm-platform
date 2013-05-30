@@ -43,15 +43,6 @@
       <scope>provided</scope>
     </dependency>
     
-    <!-- incude webapps commons web resources (added as overlay) -->
-    <!-- NOTE: the commons classes are propagated transitively through cockpit core. -->
-    <dependency>
-      <groupId>org.camunda.bpm</groupId>
-      <artifactId>camunda-webapps-commons</artifactId>
-      <type>war</type>
-      <version>${project.version}</version>
-    </dependency>
-
     <!-- rest api -->
     <dependency>
       <groupId>org.camunda.bpm</groupId>
@@ -225,7 +216,7 @@
           <plugin>
             <groupId>org.apache.tomcat.maven</groupId>
             <artifactId>tomcat7-maven-plugin</artifactId>
-            <version>2.1</version>
+            <version>2.1</version>    
           </plugin>
           <plugin>
             <groupId>org.codehaus.mojo</groupId>
@@ -254,7 +245,7 @@
                     </resource>
                   </resources>
                 </configuration>
-              </execution>
+              </execution>            
             </executions>
           </plugin>
         </plugins>
