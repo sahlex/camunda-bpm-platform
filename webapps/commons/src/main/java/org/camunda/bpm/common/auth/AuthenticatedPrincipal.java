@@ -27,6 +27,6 @@ public interface AuthenticatedPrincipal extends Principal, Serializable {
   /**
    * @return the roles of the current user
    */
-  public Set<String> getRoles();
+  public Set<Authority> getAuthoritites();
   
 }

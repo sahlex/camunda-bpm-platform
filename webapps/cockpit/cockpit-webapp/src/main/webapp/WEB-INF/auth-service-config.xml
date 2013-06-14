@@ -3,7 +3,7 @@
           http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
           http://www.springframework.org/schema/security
           http://www.springframework.org/schema/security/spring-security-3.1.xsd">
- 
+          
   <!-- spring security authentication service bootstrapping -->
 
   <bean id="cockpitRuntimeDelegate" class="org.camunda.bpm.cockpit.Cockpit" factory-method="getRuntimeDelegate">
@@ -34,16 +34,10 @@
   <bean id="defaultAuthenticationEntryPoint" class="org.camunda.bpm.common.auth.impl.spring.DefaultAuthenticationEntryPoint" />
 
   <!-- authentication manager configuration -->
-  <security:authentication-manager>
-    <security:authentication-provider>
-      <security:user-service>
-        <security:user name="demo" password="demo" authorities="ROLE_COCKPIT_USER" />
-      </security:user-service>
-    </security:authentication-provider>
-    <security:authentication-provider ref="authenticationProvider" />
+  <security:authentication-manager>  
+    <security:authentication-provider ref="authenticationProvider" />    
   </security:authentication-manager>
   
-  <!-- ldap -->  
-  <import resource="user-config-ldap.xml" />    
-
+  <bean id="authenticationProvider" class="org.camunda.bpm.common.auth.impl.spring.ForwardingAuthenticationProvider" />
+  
 </beans>

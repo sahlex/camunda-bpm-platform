@@ -10,35 +10,34 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.camunda.bpm.common.auth.impl.dummy;
-
-import java.util.Collections;
-import java.util.Set;
-
-import org.camunda.bpm.common.auth.AuthenticatedPrincipal;
-import org.camunda.bpm.common.auth.Authority;
-import org.camunda.bpm.common.auth.CamundaAuthority;
+package org.camunda.bpm.common.auth;
 
 /**
+ * <p>
+ * Exception indicating that a user could not be authorized
+ * </p>
+ * 
  * @author Daniel Meyer
- *
+ * 
  */
-public class DummyAuthenticatedPrincipal implements AuthenticatedPrincipal {
+public class AuthorizationException extends RuntimeException {
 
   private static final long serialVersionUID = 1L;
-  
-  private String name;
-  
-  public DummyAuthenticatedPrincipal(String name) {
-    this.name = name;
+
+  public AuthorizationException() {
+    super();
   }
 
-  public String getName() {
-    return name;
+  public AuthorizationException(String message, Throwable cause) {
+    super(message, cause);
   }
 
-  public Set<Authority> getAuthoritites() {
-    return Collections.singleton((Authority)CamundaAuthority.ADMINISTRATOR);
+  public AuthorizationException(String message) {
+    super(message);
+  }
+
+  public AuthorizationException(Throwable cause) {
+    super(cause);
   }
 
 }

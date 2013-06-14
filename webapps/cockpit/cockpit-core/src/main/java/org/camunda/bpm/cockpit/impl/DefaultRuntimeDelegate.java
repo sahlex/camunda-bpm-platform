@@ -25,6 +25,7 @@ import org.camunda.bpm.cockpit.impl.plugin.DefaultPluginRegistry;
 import org.camunda.bpm.cockpit.plugin.PluginRegistry;
 import org.camunda.bpm.cockpit.plugin.spi.CockpitPlugin;
 import org.camunda.bpm.common.auth.AuthenticationService;
+import org.camunda.bpm.common.auth.impl.dummy.DummyAuthenticationService;
 import org.camunda.bpm.engine.ProcessEngine;
 import org.camunda.bpm.engine.ProcessEngineException;
 import org.camunda.bpm.engine.impl.ProcessEngineImpl;
@@ -45,16 +46,16 @@ public class DefaultRuntimeDelegate implements CockpitRuntimeDelegate {
   protected AuthenticationService authenticationService;
 
   public DefaultRuntimeDelegate() {
+    // wire default service implementations
     this.pluginRegistry = new DefaultPluginRegistry();
+    this.authenticationService = new DummyAuthenticationService();
   }
 
-  @Override
   public QueryService getQueryService(String processEngineName) {
     CommandExecutor commandExecutor = getCommandExecutor(processEngineName);
     return new QueryServiceImpl(commandExecutor);
   }
 
-  @Override
   public CommandExecutor getCommandExecutor(String processEngineName) {
     ProcessEngine processEngine = getProcessEngine(processEngineName);
     if (processEngine == null) {
@@ -80,7 +81,6 @@ public class DefaultRuntimeDelegate implements CockpitRuntimeDelegate {
     return mappingFiles;
   }
 
-  @Override
   public PluginRegistry getPluginRegistry() {
     return pluginRegistry;
   }
@@ -88,18 +88,17 @@ public class DefaultRuntimeDelegate implements CockpitRuntimeDelegate {
   public AuthenticationService getAuthenticationService() {
     return authenticationService;
   }
-  
-  public void setAuthenticationService(AuthenticationService authenticationService) {
-    this.authenticationService = authenticationService;
-  }
 
-  @Override
   public ProcessEngine getProcessEngine(String processEngineName) {
     try {
       return BpmPlatform.getProcessEngineService().getProcessEngine(processEngineName);
     } catch (Exception e) {
       throw new ProcessEngineException("No process engine with name " + processEngineName + " found.", e);
     }
+  }
+  
+  public void setAuthenticationService(AuthenticationService authenticationService) {
+    this.authenticationService = authenticationService;
   }
 
 }

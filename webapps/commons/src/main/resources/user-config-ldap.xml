@@ -1,0 +1,52 @@
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:security="http://www.springframework.org/schema/security" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.springframework.org/schema/beans
+          http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+          http://www.springframework.org/schema/security
+          http://www.springframework.org/schema/security/spring-security-3.1.xsd">
+          
+  <bean id="configurationService" class="org.camunda.bpm.cockpit.Cockpit" factory-method="getConfigurationService" />    
+          
+  <!-- replaced properties in this file using valued loaded through the configuration service -->
+  <bean class="org.camunda.bpm.common.auth.impl.spring.CamundaPropertyPlaceholderConfigurer">
+    <property name="configurationService" />
+    <property name="groupName" value="ldap" />
+  </bean>
+
+  <bean id="contextSource" class="org.springframework.security.ldap.DefaultSpringSecurityContextSource">
+    <constructor-arg value="ldaps://ldap.camunda.com:636/o=camunda,c=com" />
+    <property name="userDn" value="cn=admin,o=camunda,c=com" />
+    <property name="password" value="7tx85rtx" />
+  </bean>
+
+  <bean id="authProvider" class="org.springframework.security.ldap.authentication.LdapAuthenticationProvider">
+    <constructor-arg>
+      <bean class="org.springframework.security.ldap.authentication.BindAuthenticator">
+        <constructor-arg ref="contextSource" />
+        <property name="userDnPatterns">
+          <list>
+            <value>uid={0},ou=employee</value>
+          </list>
+        </property>
+      </bean>
+    </constructor-arg>
+    <constructor-arg>
+      <bean class="org.springframework.security.ldap.userdetails.DefaultLdapAuthoritiesPopulator">
+        <constructor-arg ref="contextSource" />
+        <constructor-arg value="ou=department,ou=roles" />
+        <property name="groupRoleAttribute" value="cn" />
+        <property name="groupSearchFilter" value="(member={0})" />
+      </bean>
+    </constructor-arg>
+    <property name="authoritiesMapper" ref="camundaGrantedAuthoritiesMapper" />
+  </bean>
+
+  <!-- map company LDAP roles to camunda cockpit roles -->
+  <bean id="camundaGrantedAuthoritiesMapper" class="org.camunda.bpm.common.auth.impl.spring.CamundaGrantedAuthoritiesMapper">
+    <property name="roleNameMap">
+      <map>
+        <entry key="ROLE_MITARBEITER" value="ROLE_COCKPIT_USER" />
+      </map>
+    </property>
+  </bean>
+    
+</beans>

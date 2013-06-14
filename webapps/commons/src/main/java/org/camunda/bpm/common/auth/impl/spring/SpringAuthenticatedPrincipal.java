@@ -17,6 +17,8 @@ import java.util.HashSet;
 import java.util.Set;
 
 import org.camunda.bpm.common.auth.AuthenticatedPrincipal;
+import org.camunda.bpm.common.auth.Authority;
+import org.camunda.bpm.common.auth.CamundaAuthority;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 
@@ -47,18 +49,21 @@ public class SpringAuthenticatedPrincipal implements AuthenticatedPrincipal {
     return authentication.getName();
   }
 
-  public Set<String> getRoles() {
+  public Set<Authority> getAuthoritites() {
     return transformRoles();
   }
 
-  protected Set<String> transformRoles() {
+  protected Set<Authority> transformRoles() {
     final Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
     
-    HashSet<String> result = new HashSet<String>(authorities.size());
+    HashSet<Authority> result = new HashSet<Authority>(authorities.size());
     
     for (GrantedAuthority grantedAuthority : authorities) {
-      result.add(grantedAuthority.getAuthority());
-      
+      for (Authority authority : CamundaAuthority.values()) {
+        if(authority.getId().equals(grantedAuthority.getAuthority())) {
+          result.add(authority);       
+        }
+      } 
     }
     
     return result;

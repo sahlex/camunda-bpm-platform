@@ -59,16 +59,27 @@ public abstract class AuthenticationResource {
     try {
       // perform authentication      
       authenticationService.authenticate(token);
+      
+      checkAuthentication(authenticationService.getCurrentPrincipal());
 
       return new AuthenticationResponseDto(username, true);
 
     } catch (AuthenticationException e) {
       
       // log silently.
-      LOGGER.log(Level.FINE, "Authentication exception ", e);
+      LOGGER.log(Level.INFO, "Authentication exception ", e);
+      
+      authenticationService.clearCurrentPrincipal();
 
       return new AuthenticationResponseDto(username, false);
     }
+    
+  }
+
+  /** callback invoked after a successful authentication has been made 
+   * @param authenticatedPrincipal 
+   * @throws AuthenticationException */
+  protected void checkAuthentication(AuthenticatedPrincipal authenticatedPrincipal) throws AuthenticationException {
     
   }
 

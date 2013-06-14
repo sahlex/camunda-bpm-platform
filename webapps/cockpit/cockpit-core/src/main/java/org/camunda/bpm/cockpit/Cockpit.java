@@ -14,6 +14,7 @@ package org.camunda.bpm.cockpit;
 
 import org.camunda.bpm.cockpit.db.CommandExecutor;
 import org.camunda.bpm.cockpit.db.QueryService;
+import org.camunda.bpm.common.auth.AuthenticationService;
 import org.camunda.bpm.engine.ProcessEngine;
 
 /**
@@ -59,6 +60,14 @@ public class Cockpit {
     return getRuntimeDelegate().getProcessEngine(processEngineName);
   }
   
+  /**
+   * the authentication service provides facilities for 
+   * authenticating a user and retrieving the currently authenticated user.
+   */
+  public static AuthenticationService getAuthenticationService() {
+    return getRuntimeDelegate().getAuthenticationService();
+  }
+    
   /**
    * Returns an instance of {@link CockpitRuntimeDelegate}
    *

@@ -12,8 +12,6 @@
  */
 package org.camunda.bpm.common.auth.impl.dummy;
 
-import java.util.HashSet;
-
 import org.camunda.bpm.common.auth.AuthenticatedPrincipal;
 import org.camunda.bpm.common.auth.AuthenticationException;
 import org.camunda.bpm.common.auth.AuthenticationService;
@@ -33,7 +31,7 @@ public class DummyAuthenticationService implements AuthenticationService {
 
   public AuthenticatedPrincipal authenticate(AuthenticationToken token) throws AuthenticationException {
     String[] parts = token.getParts();
-    principal = new DummyAuthenticatedPrincipal(parts[0], new HashSet<String>());
+    principal = new DummyAuthenticatedPrincipal(parts[0]);
     return getCurrentPrincipal();
   }
 

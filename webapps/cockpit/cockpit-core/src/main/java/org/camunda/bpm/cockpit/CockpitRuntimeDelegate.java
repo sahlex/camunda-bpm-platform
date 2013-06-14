@@ -65,5 +65,5 @@ public interface CockpitRuntimeDelegate {
    * authenticating a user and retrieving the currently authenticated user.
    */
   public AuthenticationService getAuthenticationService();
-    
+      
 }

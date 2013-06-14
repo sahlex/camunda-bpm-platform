@@ -13,7 +13,10 @@
 package org.camunda.bpm.cockpit.impl.web.auth;
 
 import org.camunda.bpm.cockpit.Cockpit;
+import org.camunda.bpm.common.auth.AuthenticatedPrincipal;
+import org.camunda.bpm.common.auth.AuthenticationException;
 import org.camunda.bpm.common.auth.AuthenticationService;
+import org.camunda.bpm.common.auth.CamundaAuthority;
 import org.camunda.bpm.common.auth.resource.AuthenticationResource;
 
 /**
@@ -26,6 +29,12 @@ public class CockpitAuthenticationResource extends AuthenticationResource {
 
   protected AuthenticationService getAuthenticationService() {
     return Cockpit.getRuntimeDelegate().getAuthenticationService();
+  }
+  
+  protected void checkAuthentication(AuthenticatedPrincipal authenticatedPrincipal) throws AuthenticationException {
+    if(!CamundaAuthority.COCKPIT_USER.isGrantedTo(authenticatedPrincipal)) {
+      throw new AuthenticationException("user must be granted authority "+CamundaAuthority.COCKPIT_USER.getName());
+    }
   }
 
 }
