@@ -93,13 +93,16 @@
         <module>engine-spring</module>          
         <module>engine-rest</module>
        
+        <module>identity/identity-ldap</module>
+        
         <module>examples/invoice</module>
     
         <module>distro/jbossas71</module>
         <module>distro/gf31</module>
         <module>distro/tomcat</module>
         <module>distro/sql-script</module>
-        
+
+            
       </modules>     
     </profile>  
     <profile>
@@ -111,6 +114,7 @@
         <module>engine-osgi</module>
         <module>engine-spring</module>          
         <module>engine-rest</module>      
+        <module>identity/identity-ldap</module>
       </modules>
     </profile>    
     <profile>
@@ -559,6 +563,12 @@
         <groupId>org.jboss.resteasy</groupId>
         <artifactId>resteasy-netty</artifactId>
         <version>2.3.6.Final</version>
+      </dependency>
+      
+      <dependency>
+        <groupId>org.apache.directory.server</groupId>
+        <artifactId>apacheds-all</artifactId>
+        <version>1.5.5</version>
       </dependency>
 
     </dependencies>
